@@ -83,6 +83,18 @@ class App extends React.Component {
     });
   };
 
+  clearCompleted = () => {
+    this.setState({
+      tasks: this.state.tasks.filter(task => {
+        if (task.completed === true) {
+          return false
+        } else {
+          return true
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div className='App'>
@@ -90,7 +102,7 @@ class App extends React.Component {
           <h2>Welcome to TaskTrackr!</h2>
           <TodoForm addTask={this.addTask} />
         </div>
-        <TodoList toggleTask={this.toggleTask} tasks={this.state.tasks} />
+        <TodoList clearCompleted={this.clearCompleted} toggleTask={this.toggleTask} tasks={this.state.tasks} />
       </div>
     );
   }
